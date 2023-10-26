@@ -12,7 +12,7 @@ class ApiController extends Controller
         $latitud = '19.837364';
         $metros = '5000';
 
-        $busquedaApi = str_replace(['#condicion', '#latitud', '#longitud', '#metros', '#token'], [$condicion, $latitud, $longitud, $metros, $token], $urlApiBusqueda);
+        $busquedaApi = str_replace(['#condicion', '#latitud', '#longitud', '#metros', '#token'], [$condicion, $latitud, $longitud, $metros, $token], $urlApi);
 
         if (strpos($token, 'AQUÍ') !== false) {
             return "Error: Debes ingresar tu token en el código.";
