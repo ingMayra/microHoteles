@@ -25,6 +25,6 @@ class ScrapingController extends Controller
         // foreach ($titulos_anuncios as $titulo) {
         //     echo $titulo . "\n";
         // },
-            return view("scraping");
+            return view('scraping');
     }
 }

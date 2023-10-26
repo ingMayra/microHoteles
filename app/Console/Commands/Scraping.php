@@ -42,29 +42,46 @@ class Scraping extends Command
         // foreach($domResult->find('a[href^=/url?]') as $link)
         // echo '<h1>' . $link->plaintext . ' </h1><br>';
 
-        $urlApiBusqueda = "https://www.inegi.org.mx/app/api/denue/v1/consulta/buscar/#condicion/#latitud,#longitud/#metros/#token";
-        $token = 'feb3a08a-a504-4b2e-95ee-3fc274b2ad9d';
+$urlApiBusqueda = "https://www.inegi.org.mx/app/api/denue/v1/consulta/buscar/#condicion/#latitud,#longitud/#metros/#token";
+$token = 'feb3a08a-a504-4b2e-95ee-3fc274b2ad9d';
 
-        //buscar y procesar datos
-        // ...
+$condicion = readline('Ingresa la condición: ');
+$longitud = readline('Ingresa la longitud: ');
+$latitud = readline('Ingresa la latitud: ');
+$metros = readline('Ingresa el alcance: ');
 
-        $condicion = $this->ask('Enter the condition:');
-        $longitud = $this->ask('Enter the longitude:');
-        $latitud = $this->ask('Enter the latitude:');
-        $metros = $this->ask('Enter the meters:');
+$urlApiBusquedaTmp = str_replace(['#condicion', '#latitud', '#longitud', '#metros', '#token'], [$condicion, $latitud, $longitud, $metros, $token], $urlApiBusqueda);
 
-        $urlApiBusquedaTmp = str_replace(['#condicion', '#latitud', '#longitud', '#metros', '#token'], [$condicion, $latitud, $longitud, $metros, $token], $urlApiBusqueda);
+if (strpos($token, 'AQUÍ') !== false) {
+    echo "Error: Debes ingresar tu token en el código." . PHP_EOL;
+} else {
+    $ch = curl_init($urlApiBusquedaTmp);
 
-        if (strpos($token, 'AQUÍ') !== false) {
-            $this->error("You must enter your token in the code.");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($ch);
+
+    if ($response === false) {
+        echo "Error al realizar la solicitud: " . curl_error($ch) . PHP_EOL;
+    } else {
+        $data = json_decode($response, true);
+
+        if ($data === null) {
+            echo "Error al procesar la respuesta JSON." . PHP_EOL;
         } else {
-            $httpClient = HttpClient::create();
-            $response = $httpClient->request('GET', $urlApiBusquedaTmp);
+            echo "Hoteles procesados." . PHP_EOL;
+             $jsonData = json_encode($data, JSON_PRETTY_PRINT);
+            $outputFile = 'hoteles.json';
 
-            // Process the API response and display the data
-            $data = $response->toArray();
-            $this->info("Data fetched successfully.");
-            // You can process and display the data here
+            if (file_put_contents($outputFile, $jsonData)) {
+                echo "Los datos se han exportado a $outputFile" . PHP_EOL;
+            } else {
+                echo "Error al exportar los datos a $outputFile" . PHP_EOL;
+            }
         }
+    }
+
+    curl_close($ch);
+    }
     }
 }
