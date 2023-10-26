@@ -25,42 +25,25 @@ class Scraping extends Command
      * Execute the console command.
      */
     public function handle()
-    {
-        // require_once('simple_html_dom.php');
-
-        // $curl = curl_init();
-        // curl_setopt($curl, CURLOPT_URL, 'https://www.google.com/search?q=aplicaciones+php+gratis');
-        // curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-        // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        // $result = curl_exec($curl);
-        // curl_close($curl);
-        // //echo $result;
-        
-        // $domResult = new simple_html_dom();
-        // $domResult->load($result);
-        
-        // foreach($domResult->find('a[href^=/url?]') as $link)
-        // echo '<h1>' . $link->plaintext . ' </h1><br>';
-
+{
 $urlApiBusqueda = "https://www.inegi.org.mx/app/api/denue/v1/consulta/buscar/#condicion/#latitud,#longitud/#metros/#token";
 $token = 'feb3a08a-a504-4b2e-95ee-3fc274b2ad9d';
 
-$condicion = readline('Ingresa la condición: ');
-$longitud = readline('Ingresa la longitud: ');
-$latitud = readline('Ingresa la latitud: ');
-$metros = readline('Ingresa el alcance: ');
+$condicion ='hoteles';
+$longitud = '-90.532097';
+$latitud = '19.837364';
+$metros = '5000';
 
 $urlApiBusquedaTmp = str_replace(['#condicion', '#latitud', '#longitud', '#metros', '#token'], [$condicion, $latitud, $longitud, $metros, $token], $urlApiBusqueda);
 
 if (strpos($token, 'AQUÍ') !== false) {
     echo "Error: Debes ingresar tu token en el código." . PHP_EOL;
-} else {
+    die();
+}
     $ch = curl_init($urlApiBusquedaTmp);
-
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
     $response = curl_exec($ch);
-
+    
     if ($response === false) {
         echo "Error al realizar la solicitud: " . curl_error($ch) . PHP_EOL;
     } else {
@@ -84,4 +67,4 @@ if (strpos($token, 'AQUÍ') !== false) {
     curl_close($ch);
     }
     }
-}
+
