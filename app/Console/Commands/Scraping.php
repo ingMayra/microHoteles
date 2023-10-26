@@ -46,24 +46,23 @@ if (strpos($token, 'AQUÍ') !== false) {
     
     if ($response === false) {
         echo "Error al realizar la solicitud: " . curl_error($ch) . PHP_EOL;
-    } else {
-        $data = json_decode($response, true);
-
-        if ($data === null) {
-            echo "Error al procesar la respuesta JSON." . PHP_EOL;
-        } else {
-            echo "Hoteles procesados." . PHP_EOL;
-             $jsonData = json_encode($data, JSON_PRETTY_PRINT);
-            $outputFile = 'hoteles.json';
-
-            if (file_put_contents($outputFile, $jsonData)) {
-                echo "Los datos se han exportado a $outputFile" . PHP_EOL;
-            } else {
-                echo "Error al exportar los datos a $outputFile" . PHP_EOL;
-            }
-        }
+        die();
     }
+     $data = json_decode($response, true);
+    if ($data === null) {
+    echo "Error al procesar la respuesta JSON." . PHP_EOL;
+    die();
+    }
+    echo "Hoteles procesados." . PHP_EOL;
+    $jsonData = json_encode($data, JSON_PRETTY_PRINT);
+    $outputFile = 'hoteles.json';
 
+    if (file_put_contents($outputFile, $jsonData)) {
+    echo "Los datos se han exportado a $outputFile" . PHP_EOL;
+    die();
+    } 
+
+    echo "Error al exportar los datos a $outputFile" . PHP_EOL;
     curl_close($ch);
     }
     }
