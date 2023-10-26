@@ -48,7 +48,7 @@ if (strpos($token, 'AQUÍ') !== false) {
     echo "Error al realizar la solicitud: " . curl_error($ch);
     die();
     }
-     $data = json_decode($response, true);
+    $data = json_decode($response, true);
     if ($data === null) {
     echo "Error al procesar la respuesta JSON.";
     die();
