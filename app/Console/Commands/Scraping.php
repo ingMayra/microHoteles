@@ -37,7 +37,7 @@ $metros = '5000';
 $urlApiBusquedaTmp = str_replace(['#condicion', '#latitud', '#longitud', '#metros', '#token'], [$condicion, $latitud, $longitud, $metros, $token], $urlApiBusqueda);
 
 if (strpos($token, 'AQUÍ') !== false) {
-    echo "Error: Debes ingresar tu token en el código." . PHP_EOL;
+    echo "Error: Debes ingresar tu token en el código.";
     die();
 }
     $ch = curl_init($urlApiBusquedaTmp);
@@ -45,24 +45,24 @@ if (strpos($token, 'AQUÍ') !== false) {
     $response = curl_exec($ch);
     
     if ($response === false) {
-        echo "Error al realizar la solicitud: " . curl_error($ch) . PHP_EOL;
-        die();
+    echo "Error al realizar la solicitud: " . curl_error($ch);
+    die();
     }
      $data = json_decode($response, true);
     if ($data === null) {
-    echo "Error al procesar la respuesta JSON." . PHP_EOL;
+    echo "Error al procesar la respuesta JSON.";
     die();
     }
-    echo "Hoteles procesados." . PHP_EOL;
+    echo "Hoteles procesados.";
     $jsonData = json_encode($data, JSON_PRETTY_PRINT);
     $outputFile = 'hoteles.json';
 
     if (file_put_contents($outputFile, $jsonData)) {
-    echo "Los datos se han exportado a $outputFile" . PHP_EOL;
+    echo "Los datos se han exportado a $outputFile";
     die();
     } 
 
-    echo "Error al exportar los datos a $outputFile" . PHP_EOL;
+    echo "Error al exportar los datos a $outputFile";
     curl_close($ch);
     }
     }
