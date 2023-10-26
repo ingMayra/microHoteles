@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ScrapingController;
+use App\Http\Controllers\ApiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,4 +18,4 @@ use App\Http\Controllers\ScrapingController;
 // });
 
 
-Route::get('/scraping', [ScrapingController::class,"scraping"])->name ('scraping');
+Route::get('/', [ApiController::class,"datosApi"])->name ('principal');

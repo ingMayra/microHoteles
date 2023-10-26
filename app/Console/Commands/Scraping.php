@@ -26,9 +26,11 @@ class Scraping extends Command
      */
     public function handle()
 {
+ // Aqui solo ingreso la url de la Api y la almaceno en una variable en este caso $urlApiBusqueda 
 $urlApiBusqueda = "https://www.inegi.org.mx/app/api/denue/v1/consulta/buscar/#condicion/#latitud,#longitud/#metros/#token";
 $token = 'feb3a08a-a504-4b2e-95ee-3fc274b2ad9d';
 
+//Declaro las variables que tiene la api y las que son las mas importantes 
 $condicion ='hoteles';
 $longitud = '-90.532097';
 $latitud = '19.837364';
@@ -45,7 +47,7 @@ if (strpos($token, 'AQUÍ') !== false) {
     $response = curl_exec($ch);
     
     if ($response === false) {
-    echo "Error al realizar la solicitud: " . curl_error($ch);
+    echo "Error al realizar la solicitud: ".curl_error($ch);
     die();
     }
     $data = json_decode($response, true);
