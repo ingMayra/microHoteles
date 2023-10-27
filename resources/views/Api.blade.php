@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-    <h1 class="titulo">Datos de la API</h1>
+    <h1 class="titulo">Datos de la API Hoteles</h1>
     <pre>{{ $jsonData }}</pre>
 </body>
 </html>

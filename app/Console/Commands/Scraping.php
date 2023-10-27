@@ -32,11 +32,12 @@ $token = 'feb3a08a-a504-4b2e-95ee-3fc274b2ad9d';
 
 //Declaro las variables que tiene la api y las que son las mas importantes 
 $condicion ='hoteles';
-$longitud = '-90.532097';
-$latitud = '19.837364';
+$longitud = '-90.537361';
+$latitud = '19.844813';
 $metros = '5000';
 
-$urlApiBusquedaTmp = str_replace(['#condicion', '#latitud', '#longitud', '#metros', '#token'], [$condicion, $latitud, $longitud, $metros, $token], $urlApiBusqueda);
+$urlApiBusquedaTmp = str_replace(['#condicion', '#latitud', '#longitud', '#metros', '#token'], 
+[$condicion, $latitud, $longitud, $metros, $token], $urlApiBusqueda);
 
 if (strpos($token, 'AQUÍ') !== false) {
     echo "Error: Debes ingresar tu token en el código.";
