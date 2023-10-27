@@ -8,8 +8,8 @@ class ApiController extends Controller
         $urlApi = "https://www.inegi.org.mx/app/api/denue/v1/consulta/buscar/#condicion/#latitud,#longitud/#metros/#token";
         $token = 'feb3a08a-a504-4b2e-95ee-3fc274b2ad9d';
         $condicion = 'hoteles';
-        $longitud = '-90.532097';
-        $latitud = '19.837364';
+        $longitud = '-90.535273';
+        $latitud = '19.842428';
         $metros = '5000';
 
         $busquedaApi = str_replace(['#condicion', '#latitud', '#longitud', '#metros', '#token'], [$condicion, $latitud, $longitud, $metros, $token], $urlApi);
@@ -35,4 +35,6 @@ class ApiController extends Controller
         $jsonData = json_encode($data, JSON_PRETTY_PRINT);
         return view('Api', ['jsonData' => $jsonData]);
     }
+
+    
 }
