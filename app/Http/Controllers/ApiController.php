@@ -14,10 +14,6 @@ class ApiController extends Controller
 
         $busquedaApi = str_replace(['#condicion', '#latitud', '#longitud', '#metros', '#token'], [$condicion, $latitud, $longitud, $metros, $token], $urlApi);
 
-        if (strpos($token, 'AQUÍ') !== false) {
-            return "Error: Debes ingresar tu token en el código.";
-        }
-
         $ch = curl_init($busquedaApi);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
