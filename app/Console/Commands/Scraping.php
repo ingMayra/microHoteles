@@ -58,7 +58,7 @@ if (strpos($token, 'AQUÍ') !== false) {
     }
     echo "Hoteles procesados.";
     $jsonData = json_encode($data, JSON_PRETTY_PRINT);
-    $outputFile = 'hoteles.json';
+    $outputFile = public_path('hoteles.json');
 
     if (file_put_contents($outputFile, $jsonData)) {
     echo "Los datos se han exportado a $outputFile";

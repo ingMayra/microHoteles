@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 class ApiController extends Controller
 {
     public function datosApi()
@@ -27,7 +28,6 @@ class ApiController extends Controller
         if ($data === null) {
             return "Error al procesar la respuesta JSON.";
         }
-
         $jsonData = json_encode($data, JSON_PRETTY_PRINT);
         return view('Api', ['jsonData' => $jsonData]);
     }
