@@ -14,7 +14,6 @@ class ApiController extends Controller
         $metros = '5000';
 
         $busquedaApi = str_replace(['#condicion', '#latitud', '#longitud', '#metros', '#token'], [$condicion, $latitud, $longitud, $metros, $token], $urlApi);
-
         $ch = curl_init($busquedaApi);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
@@ -30,7 +29,9 @@ class ApiController extends Controller
         }
         $jsonData = json_encode($data, JSON_PRETTY_PRINT);
         return view('Api', ['jsonData' => $jsonData]);
-    }
 
+        DB::connection('mysql')->table('scraping')->insert(['json_data' => json_encode($data)]);
+    }
+    
     
 }
