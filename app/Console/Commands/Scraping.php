@@ -39,10 +39,6 @@ $metros = '5000';
 $urlApiBusquedaTmp = str_replace(['#condicion', '#latitud', '#longitud', '#metros', '#token'], 
 [$condicion, $latitud, $longitud, $metros, $token], $urlApiBusqueda);
 
-if (strpos($token, 'AQUÍ') !== false) {
-    echo "Error: Debes ingresar tu token en el código.";
-    die();
-}
     $ch = curl_init($urlApiBusquedaTmp);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $response = curl_exec($ch);
@@ -64,7 +60,6 @@ if (strpos($token, 'AQUÍ') !== false) {
     echo "Los datos se han exportado a $outputFile";
     die();
     } 
-
     echo "Error al exportar los datos a $outputFile";
     curl_close($ch);
     }
