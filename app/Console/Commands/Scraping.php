@@ -68,5 +68,5 @@ if (strpos($token, 'AQUÍ') !== false) {
     echo "Error al exportar los datos a $outputFile";
     curl_close($ch);
     }
-    }
+}
 
