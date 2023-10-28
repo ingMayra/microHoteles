@@ -23,14 +23,13 @@ class ApiController extends Controller
         }
 
         $data = json_decode($response, true);
-
+        DB::connection('mysql')->table('scraping')->insert(['json_data' => json_encode($data)]);
+        
         if ($data === null) {
             return "Error al procesar la respuesta JSON.";
         }
         $jsonData = json_encode($data, JSON_PRETTY_PRINT);
         return view('Api', ['jsonData' => $jsonData]);
-
-        DB::connection('mysql')->table('scraping')->insert(['json_data' => json_encode($data)]);
     }
     
     
