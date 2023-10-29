@@ -30,33 +30,33 @@ class ApiController extends Controller
         return view('Api', ['jsonData' => $jsonData]);
     }
 
-    public function actualizar (Request $request)
-    {
-            $validated = $request->validate([
-            'Id' ,
-            'CLEE',
-            'Nombre',
-            'Razon_social',
-            'Clase_actividad',
-            'Estrato',
-            'Tipo_vialidad',
-            'Calle',
-            'Num_Exterior',
-            'Num_Interior',
-            'Colonia',
-            'CP',
-            'Ubicacion',
-            'Telefono',
-            'Correo_e',
-            'Sitio_internet',
-            'Tipo',
-            'Longitud',
-            'Latitud',
-            'CentroComercial',
-            'TipoCentroComercial',
-            'NumLocal',
-            ]);
-    }
+    // public function actualizar (Request $request)
+    // {
+    //         $validated = $request->validate([
+    //         'Id' ,
+    //         'CLEE',
+    //         'Nombre',
+    //         'Razon_social',
+    //         'Clase_actividad',
+    //         'Estrato',
+    //         'Tipo_vialidad',
+    //         'Calle',
+    //         'Num_Exterior',
+    //         'Num_Interior',
+    //         'Colonia',
+    //         'CP',
+    //         'Ubicacion',
+    //         'Telefono',
+    //         'Correo_e',
+    //         'Sitio_internet',
+    //         'Tipo',
+    //         'Longitud',
+    //         'Latitud',
+    //         'CentroComercial',
+    //         'TipoCentroComercial',
+    //         'NumLocal',
+    //         ]);
+    // }
     
     
 }
