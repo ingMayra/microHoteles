@@ -12,7 +12,28 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('scraping', function (Blueprint $table) {
-            $table->json('json_data');
+            $table->string('Id');
+            $table->string('CLEE');
+            $table->string('Nombre');
+            $table->string('Razon_social');
+            $table->string('Clase_actividad');
+            $table->string('Estrato');
+            $table->string('Tipo_vialidad');
+            $table->string('Calle');
+            $table->string('Num_Exterior');
+            $table->string('Num_Interior');
+            $table->string('Colonia');
+            $table->string('CP');
+            $table->string('Ubicacion');
+            $table->string('Telefono');
+            $table->string('Correo_e');
+            $table->string('Sitio_internet');
+            $table->string('Tipo');
+            $table->string('Longitud');
+            $table->string('Latitud');
+            $table->string('CentroComercial');
+            $table->string('TipoCentroComercial');
+            $table->string('NumLocal');
             $table->timestamps();
         });
     }

@@ -21,15 +21,41 @@ class ApiController extends Controller
         if ($response === false) {
             return "Error al realizar la solicitud: " . curl_error($ch);
         }
-
         $data = json_decode($response, true);
-        DB::connection('mysql')->table('scraping')->insert(['json_data' => json_encode($data)]);
-        
+
         if ($data === null) {
             return "Error al procesar la respuesta JSON.";
         }
         $jsonData = json_encode($data, JSON_PRETTY_PRINT);
         return view('Api', ['jsonData' => $jsonData]);
+    }
+
+    public function actualizar (Request $request)
+    {
+            $validated = $request->validate([
+            'Id' ,
+            'CLEE',
+            'Nombre',
+            'Razon_social',
+            'Clase_actividad',
+            'Estrato',
+            'Tipo_vialidad',
+            'Calle',
+            'Num_Exterior',
+            'Num_Interior',
+            'Colonia',
+            'CP',
+            'Ubicacion',
+            'Telefono',
+            'Correo_e',
+            'Sitio_internet',
+            'Tipo',
+            'Longitud',
+            'Latitud',
+            'CentroComercial',
+            'TipoCentroComercial',
+            'NumLocal',
+            ]);
     }
     
     
